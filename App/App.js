@@ -35,12 +35,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  map-container {
-    width: '47.5vh',
-    height: '74vh'.
-    top: '21vh',
-    left: '54.5vw',
-    border-radius: '6px'
   }
 });
