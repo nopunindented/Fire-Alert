@@ -7,32 +7,19 @@ export const fetchNASAData = async () => {
 
   try {
     const response = await axios.get(url);
-
-    console.log('Response data:', response.data);
-
-
     const dataArray = [];
         const lines = response.data.trim().split('\n');
 
-        // Get the headers from the first line
         const headers = lines.shift().split(',');
 
-        // Parse the remaining lines
         lines.forEach((line) => {
           const values = line.split(',');
           const entry = {};
 
-          // Create an object using headers as keys and values as values
-          headers.forEach((header, index) => {
-            entry[header] = values[index];
-          });
-
-          dataArray.push(entry);
+          dataArray.push(values);
         });
 
-        console.log('Parsed data array:', dataArray);
-
-    return response.data;
+    return [headers, dataArray];
   } catch (error) {
     console.error('Error:', error);
     throw error;
