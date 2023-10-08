@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { fetchNASAData } from './util/firmsApi';
+import Map from './Map';
 
 export default function App() {
     useEffect(() => {
@@ -11,6 +12,8 @@ export default function App() {
             setLoadingFirmsData(false);
             setHeaders(data[0]);
             setFirmsData(data[1]);
+            console.log("Finished Loading Data")
+            console.log(data[1].length)
 })
           .catch(error => {
             console.error('Error:', error);
@@ -25,6 +28,7 @@ export default function App() {
     <View style={styles.container}>
       <Text>This app uses FIRMS! {loadingFirmsData ? ("data is loading...") : ("data is loaded")}</Text>
       <StatusBar style="auto" />
+      {!loadingFirmsData && <Map lat={1} lng={1} fireData={firmsData} />}
     </View>
   );
 }

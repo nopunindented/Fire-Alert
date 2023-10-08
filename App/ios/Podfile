@@ -39,6 +39,10 @@ end
 
 target 'App' do
   use_expo_modules!
+    pod 'Google-Maps-iOS-Utils', :git => 'https://github.com/Simon-TechForm/google-maps-ios-utils.git', :branch => 'feat/support-apple-silicon'
+
+    rn_maps_path = '../node_modules/react-native-maps'
+    pod 'react-native-google-maps', :path => rn_maps_path
   config = use_native_modules!
 
   use_frameworks! :linkage => podfile_properties['ios.useFrameworks'].to_sym if podfile_properties['ios.useFrameworks']
