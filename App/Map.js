@@ -1,62 +1,62 @@
-import React from 'react';
-import {
-    View,
-    StyleSheet,
-    Text,
-} from 'react-native';
-import MapView, {Marker} from 'react-native-maps';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
+import Geolocation from '@react-native-community/geolocation';
 
-export default function Map({ lat, lng, fireData }) {
-    return (
-        <View style={styles.body}>
-            <View style={styles.mapContainer}>
-                <MapView
-                    style={styles.map}
-                    initialRegion={{
-                        latitude: lat,
-                        longitude: lng,
-                        latitudeDelta: 40,
-                        longitudeDelta: 80,
-                    }}
-                    >
-                    <Marker
-                        coordinate={{ latitude: lat, longitude: lng }}
-                        pinColor="blue"
-                    />
-                    {fireData.map((point, index) => (
-                                <Marker
-                                  key={index}
-                                  coordinate={{
-                                    latitude: parseFloat(point[0]),
-                                    longitude: parseFloat(point[1]),
-                                  }}
-                                  pinColor="red"
-                                />
-                    ))}
-                </MapView>
-            </View>
-        </View>
+const GoogleMap = ({ data }) => {
+  const [userLocation, setUserLocation] = useState({ latitude: 0, longitude: 0 });
+
+  useEffect(() => {
+    Geolocation.getCurrentPosition(
+      position => {
+        setUserLocation({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        });
+      },
+      error => console.error(error),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
-}
+  }, []);
+
+  return (
+    <View style={styles.container}>
+      <MapView
+        style={styles.map}
+        initialRegion={{
+          latitude: userLocation.latitude,
+          longitude: userLocation.longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+      >
+        <Marker
+          coordinate={userLocation}
+          pinColor="blue"
+        />
+        {data &&
+          data.map((coords, index) => (
+            <Marker
+              key={index}
+              coordinate={{
+                latitude: coords.latitude,
+                longitude: coords.longitude,
+              }}
+              pinColor="red"
+            />
+          ))}
+      </MapView>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    body: {
-        flex: 1,
-        alignItems: 'center',
-        width: '100%',
-    },
-    text: {
-        fontSize: 40,
-        margin: 10,
-    },
-    mapContainer: {
-        flex: 1,
-        width: '100%',
-        borderColor: 'red', // Border color (you can change this)
-        borderWidth: 2, // Border width (you can change this)
-    },
-    map: {
-        flex: 1,
-        width: '100%',
-    },
+  container: {
+    flex: 1,
+  },
+  map: {
+    flex: 1,
+  },
 });
+
+export default GoogleMap;

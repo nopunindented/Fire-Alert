@@ -28,7 +28,7 @@ export default function App() {
     <View style={styles.container}>
       <Text>This app uses FIRMS! {loadingFirmsData ? ("data is loading...") : ("data is loaded")}</Text>
       <StatusBar style="auto" />
-      {!loadingFirmsData && <Map lat={1} lng={1} fireData={firmsData} />}
+      {!loadingFirmsData && <Map lat={1} lng={1} data={[["1","2"]]} />}
     </View>
   );
 }

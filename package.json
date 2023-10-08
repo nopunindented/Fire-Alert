@@ -1,1 +1,7 @@
-{}
+{
+  "dependencies": {
+    "@react-native-community/geolocation": "^3.1.0",
+    "expo-location": "^16.3.0",
+    "react-native-location": "^2.5.0"
+  }
+}

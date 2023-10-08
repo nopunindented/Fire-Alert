@@ -9,15 +9,20 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-native-community/geolocation": "^3.1.0",
     "axios": "^1.5.1",
     "csv-parser": "^3.0.0",
     "expo": "~49.0.13",
+    "expo-location": "~16.1.0",
     "expo-splash-screen": "~0.20.5",
     "expo-status-bar": "~1.6.0",
+    "metro": "^0.79.1",
     "react": "18.2.0",
-    "react-native": "0.72.5",
+    "react-native": "^0.72.5",
     "react-native-geocoding": "^0.5.0",
+    "react-native-geolocation-service": "^5.3.1",
     "react-native-get-location": "^4.0.0",
+    "react-native-location": "^2.5.0",
     "react-native-maps": "^1.7.1",
     "react-native-webview": "^13.6.2"
   },

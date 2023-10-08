@@ -5,7 +5,10 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "android": {
+      "permissions": ["ACCESS_FINE_LOCATION"]
+    }
   },
   "name": "App"
 }
