@@ -8,8 +8,8 @@ export default function App() {
         const [loadingFirmsData, setLoadingFirmsData] = useState(true);
         const [headers, setHeaders] = useState([]);
         const [firmsData, setFirmsData] = useState([]);
-        const [lati, setLati] = useState(10.5461);
-        const [lngi, setLngi] = useState(10.4937);
+        const [lati, setLati] = useState(53.5461);
+        const [lngi, setLngi] = useState(-113.4937);
 
     const [userLocation, setUserLocation] = useState({ latitude: 0, longitude: 0 });
 
