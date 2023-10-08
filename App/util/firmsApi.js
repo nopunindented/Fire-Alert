@@ -2,10 +2,11 @@ import axios from 'axios';
 
 const FIRMS_MAP_KEY = "832b6eef2f6837122b1999958dddac1e";
 
-export const fetchNASAData = async () => {
-  const url = `https://firms.modaps.eosdis.nasa.gov/api/area/csv/${FIRMS_MAP_KEY}/VIIRS_SNPP_NRT/world/1/2023-10-07`;
+export const fetchNASAData = async (lat, lng) => {
+  const url = `https://firms.modaps.eosdis.nasa.gov/api/area/csv/${FIRMS_MAP_KEY}/VIIRS_SNPP_NRT/${lat-10},${lng-10},${lat+10},${lng+10}/1/2023-10-07`;
 
   try {
+    console.log(url)
     const response = await axios.get(url);
     const dataArray = [];
         const lines = response.data.trim().split('\n');
@@ -16,7 +17,7 @@ export const fetchNASAData = async () => {
           const values = line.split(',');
           const entry = {};
 
-          dataArray.push(values);
+          dataArray.push([values[0], values[1]]);
         });
 
     return [headers, dataArray];

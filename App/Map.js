@@ -15,23 +15,23 @@ export default function Map({ lat, lng, fireData }) {
                     initialRegion={{
                         latitude: lat,
                         longitude: lng,
-                        latitudeDelta: 40,
-                        longitudeDelta: 80,
+                        latitudeDelta: 20,
+                        longitudeDelta: 20,
                     }}
                     >
                     <Marker
                         coordinate={{ latitude: lat, longitude: lng }}
                         pinColor="blue"
                     />
-                    {fireData.map((point, index) => (
-                                <Marker
-                                  key={index}
-                                  coordinate={{
-                                    latitude: parseFloat(point[0]),
-                                    longitude: parseFloat(point[1]),
-                                  }}
-                                  pinColor="red"
-                                />
+                    {fireData && fireData.map((point, index) => (
+                    <Marker
+                        key={index}
+                        coordinate={{
+                            latitude: (parseFloat(point[0])),
+                            longitude: (parseFloat(point[1]))
+                            }}
+                        pinColor="red"
+                    />
                     ))}
                 </MapView>
             </View>
