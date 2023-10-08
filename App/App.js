@@ -20,10 +20,12 @@ export default function App() {
         const [loadingFirmsData, setLoadingFirmsData] = useState(true);
         const [headers, setHeaders] = useState([]);
         const [firmsData, setFirmsData] = useState([]);
+        const current = new Date();
 
   return (
     <View style={styles.container}>
-      <Text>This app uses FIRMS! {loadingFirmsData ? ("data is loading...") : ("data is loaded")}</Text>
+      <Text>This app uses FIRMS! {loadingFirmsData ? ("data is loading...") : ("data is loaded!!!")}</Text>
+      <Text>HELLO!{'\n'} {current.getFullYear()}/{current.getMonth()+1}/{current.getDate()} {loadingFirmsData ? ("") : (firmsData.slice(0,10).toString())} </Text>
       <StatusBar style="auto" />
     </View>
   );
