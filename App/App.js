@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { fetchNASAData } from './util/firmsApi';
 import Map from './Map';
+import { PermissionsAndroid } from 'react-native';
 
 export default function App() {
         const [loadingFirmsData, setLoadingFirmsData] = useState(true);
@@ -13,12 +14,37 @@ export default function App() {
 
     const [userLocation, setUserLocation] = useState({ latitude: 0, longitude: 0 });
 
-      useEffect(() => {
+async function requestLocationPermission() {
+  try {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      {
+        title: 'Location Permission',
+        message: 'This app needs access to your location for geolocation features.',
+        buttonNeutral: 'Ask Me Later',
+        buttonNegative: 'Cancel',
+        buttonPositive: 'OK',
+      }
+    );
+
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      console.log('Location permission granted');
+      // You can now call navigator.geolocation.getCurrentPosition
+    } else {
+      console.log('Location permission denied');
+    }
+  } catch (err) {
+    console.warn(err);
+  }
+}
+
+
+     async function getLocation() {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             position => {
               setLati(position.coords.latitude);
-              setLongi(position.coords.longitude);
+              setLngi(position.coords.longitude);
             },
             error => console.error(error),
             { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
@@ -26,21 +52,22 @@ export default function App() {
         } else {
           console.error("Geolocation is not supported by this device.");
         }
-      }, []);
+     };
 
     useEffect(() => {
         console.log("Started Loading Data")
         setLoadingFirmsData(true)
+        requestLocationPermission().then(
         fetchNASAData(lat=lati, lng=lngi).then(data => {
             setLoadingFirmsData(false);
             setHeaders(data[0]);
             setFirmsData(data[1]);
             console.log("Finished Loading Data")
             console.log(data[1].length + " points loaded")
-})
+        })
           .catch(error => {
             console.error('Error:', error);
-          });
+          }));
       }, []);
 
 
