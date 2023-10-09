@@ -64,7 +64,7 @@ def cluster():
         grouped_fires[k] = np.array([average_coordinate[0],average_coordinate[1],k])
 
     unique_coordinates = coordinates[filter][labels==-1]
-    grouped_fires[len(unique_labels)-1:] = np.array([unique_coordinates[:,0],unique_coordinates[:,1],[-1]*len(unique_coordinates)]).T
+    grouped_fires[len(unique_labels)-1:] = np.c_[unique_coordinates,-np.ones(len(unique_coordinates))] # Chat GPT improved after lots of coercing
   
 
     # plt.title(f"Estimated number of clusters:")
