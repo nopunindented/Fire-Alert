@@ -11,7 +11,7 @@ function HorizontalBar() {
     <View style={styles.horizontalBar}>
       <Text style={styles.barText}>Live Data From FIRMS</Text>
       <Image
-        source={require('./path-to-your-nasa-logo.png')}
+        source={require('../assets/NASA.png')}
         style={styles.logo}
       />
     </View>

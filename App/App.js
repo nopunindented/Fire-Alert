@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { fetchNASAData } from './util/firmsApi';
 import Map from './Map';
 import { PermissionsAndroid } from 'react-native';
@@ -73,8 +73,19 @@ async function requestLocationPermission() {
 
   return (
     <View style={styles.container}>
-      <Text>This app uses FIRMS! {loadingFirmsData ? ("data is loading...") : ("data is loaded")}</Text>
+      <Text>{loadingFirmsData ? ("data is loading...") : ("data is loaded")}</Text>
       <StatusBar style="auto" />
+      <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', backgroundColor: 'darkblue', padding: 10 }}>
+        <Text style={{ fontWeight: 'bold', color: 'white' }}>This App Uses FIRMS by </Text>
+        <Image
+          style={{ width: 120, height: 100 }}
+          source={require('./assets/NASA.png')}
+        />
+      </View>
+
+
+
+
       {!loadingFirmsData && firmsData && <Map lat={lati} lng={lngi} fireData={firmsData} />}
     </View>
   );
