@@ -3,8 +3,11 @@ import {
     View,
     StyleSheet,
     Text,
+    Image
 } from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
+import fireSrc from "./assets/fire.png"
+
 
 export default function Map({ lat, lng, fireData }) {
     return (
@@ -19,10 +22,7 @@ export default function Map({ lat, lng, fireData }) {
                         longitudeDelta: 20,
                     }}
                     >
-                    <Marker
-                        coordinate={{ latitude: lat, longitude: lng }}
-                        pinColor="blue"
-                    />
+
                     {fireData && fireData.map((point, index) => (
                     <Marker
                         key={index}
@@ -31,8 +31,15 @@ export default function Map({ lat, lng, fireData }) {
                             longitude: (parseFloat(point[1]))
                             }}
                         pinColor="red"
-                    />
+                        opacity={0.8}
+                        >
+                        <Image source={fireSrc} style={{ width: 32, height: 32 }} />
+                    </Marker>
                     ))}
+                    <Marker
+                        coordinate={{ latitude: lat, longitude: lng }}
+                        pinColor="blue"
+                    />
                 </MapView>
             </View>
         </View>
