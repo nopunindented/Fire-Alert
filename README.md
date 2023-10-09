@@ -14,3 +14,6 @@ Notifications are delivered seamlessly through SMS messages using the Twilio ser
 ## Interactive Map Interface:
 The app provides an intuitive and interactive map interface that allows users to visualize the current locations of active wildfires.
 Users can navigate the map, zoom in and out, and explore specific wildfire incidents, gaining valuable insights into the geographical spread and severity of wildfires.
+
+## Presentation
+https://drive.google.com/file/d/10nU-GY7MxuN9-RUuGJwJJt9e7PGdZ169/view?usp=sharing
