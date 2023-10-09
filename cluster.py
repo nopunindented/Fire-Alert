@@ -1,3 +1,5 @@
+# This file does the flask delivery of the clustered data
+# Basically the same as clus.py but wrapped in a Get Request, no plotting.
 import requests
 from sklearn.cluster import DBSCAN
 from datetime import datetime
